@@ -1,6 +1,6 @@
 import { addMessagesToUser, getMessagesByUser } from "../db/dao/message";
 import messageMapping from "../mapping/message";
-import { MessageListResponse } from "../model/message";
+import { CreateMessageResponse, MessageListResponse } from "../model/message";
 
 const messageService = {
   getMessages: async (userId: number, page: number, pageSize: number): Promise<MessageListResponse> => {
@@ -15,8 +15,9 @@ const messageService = {
       }
     }
   },
-  sendMessage: async (userId: number, message: string, to: number[]) => {
-    await addMessagesToUser(message, userId, to)
+  sendMessage: async (userId: number, message: string, to: number[]): Promise<CreateMessageResponse> => {
+    const addMessageResult = await addMessagesToUser(message, userId, to)
+    return messageMapping.composeAddMessageResponse(addMessageResult)
   }
 }
 

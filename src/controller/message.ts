@@ -23,8 +23,8 @@ const messageController = {
       message,
       to
     } = req.body as SendMessageRequest;
-    await messageService.sendMessage(userId, message, to);
-    setResponse({ res, status: 200 })
+    const result = await messageService.sendMessage(userId, message, to);
+    setResponse({ res, status: 200, result })
   }
 }
 

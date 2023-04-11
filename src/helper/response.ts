@@ -13,7 +13,7 @@ export function setResponse({
   errors?: any
 }) {
   if (errors){
-    res.status(status).json({
+    return res.status(status).json({
       errors
     })
   }

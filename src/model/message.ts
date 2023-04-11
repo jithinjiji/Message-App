@@ -21,3 +21,11 @@ export interface MessageListResponse{
   messages:MessageListItem[];
   pagination: Pagination
 }
+
+export interface CreateMessageResponse{
+  id: number;
+  message: string;
+  sender: number;
+  receiver: number;
+  createdAt: string;
+}
